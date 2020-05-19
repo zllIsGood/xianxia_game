@@ -1,0 +1,123 @@
+
+
+//---------------------------
+// desc: 获取所有interface
+// author: Ade
+// since: 2019-02-15 15:13:20.209146
+// copyright: haoyu
+//---------------------------
+
+class LoadAllInterface {
+	public static interfacelist:[string] = [""];
+	public static init(): void {
+		LoadAllInterface.interfacelist["MapInfo"] = "MapInfo";
+		LoadAllInterface.interfacelist["BaseMsg"] = "BaseMsg";
+		LoadAllInterface.interfacelist["Map<T>"] = "Map<T>";
+		LoadAllInterface.interfacelist["XY"] = "XY";
+		LoadAllInterface.interfacelist["IBaseView"] = "IBaseView";
+		LoadAllInterface.interfacelist["ChongZhi2Config"] = "ChongZhi2Config";
+		LoadAllInterface.interfacelist["ChongZhiConfig"] = "ChongZhiConfig";
+		LoadAllInterface.interfacelist["DevilBossBase"] = "DevilBossBase";
+		LoadAllInterface.interfacelist["KuangYuanConfig"] = "KuangYuanConfig";
+		LoadAllInterface.interfacelist["DeskGiftConf"] = "DeskGiftConf";
+		LoadAllInterface.interfacelist["CityBossConfig"] = "CityBossConfig";
+		LoadAllInterface.interfacelist["RechargeItemsConfig"] = "RechargeItemsConfig";
+		LoadAllInterface.interfacelist["GodWeaponLevelConfig"] = "GodWeaponLevelConfig";
+		LoadAllInterface.interfacelist["GodWeaponBaseConfig"] = "GodWeaponBaseConfig";
+		LoadAllInterface.interfacelist["ClickGiftConf"] = "ClickGiftConf";
+		LoadAllInterface.interfacelist["GodWeaponLineConfig"] = "GodWeaponLineConfig";
+		LoadAllInterface.interfacelist["MailIdConfig"] = "MailIdConfig";
+		LoadAllInterface.interfacelist["CashCowBasicConfig"] = "CashCowBasicConfig";
+		LoadAllInterface.interfacelist["SkillsSorderConfig"] = "SkillsSorderConfig";
+		LoadAllInterface.interfacelist["CrossArenaScore"] = "CrossArenaScore";
+		LoadAllInterface.interfacelist["ActivityType20Config"] = "ActivityType20Config";
+		LoadAllInterface.interfacelist["ActivityType21Config"] = "ActivityType21Config";
+		LoadAllInterface.interfacelist["ExpFubenConfig"] = "ExpFubenConfig";
+		LoadAllInterface.interfacelist["WelcomeConfig"] = "WelcomeConfig";
+		LoadAllInterface.interfacelist["ActorExRingFubenConfig"] = "ActorExRingFubenConfig";
+		LoadAllInterface.interfacelist["CaiKuangConfig"] = "CaiKuangConfig";
+		LoadAllInterface.interfacelist["RichManGridConfig"] = "RichManGridConfig";
+		LoadAllInterface.interfacelist["WeiXiGuanZhuConst"] = "WeiXiGuanZhuConst";
+		LoadAllInterface.interfacelist["MergeConfig"] = "MergeConfig";
+		LoadAllInterface.interfacelist["MonsterSpeakConfig"] = "MonsterSpeakConfig";
+		LoadAllInterface.interfacelist["NpcBaseConfig"] = "NpcBaseConfig";
+		LoadAllInterface.interfacelist["TreasureBoxRateConfig"] = "TreasureBoxRateConfig";
+		LoadAllInterface.interfacelist["TianTiRankAwardConfig"] = "TianTiRankAwardConfig";
+		LoadAllInterface.interfacelist["CashCowBoxConfig"] = "CashCowBoxConfig";
+		LoadAllInterface.interfacelist["DailyRechargeConfig"] = "DailyRechargeConfig";
+		LoadAllInterface.interfacelist["GodweaponItemConfig"] = "GodweaponItemConfig";
+		LoadAllInterface.interfacelist["TerraceDescConfig"] = "TerraceDescConfig";
+		LoadAllInterface.interfacelist["CrossArenaBase"] = "CrossArenaBase";
+		LoadAllInterface.interfacelist["CityBaseConfig"] = "CityBaseConfig";
+		LoadAllInterface.interfacelist["CashCowAmplitudeConfig"] = "CashCowAmplitudeConfig";
+		LoadAllInterface.interfacelist["CrossBossBase"] = "CrossBossBase";
+		LoadAllInterface.interfacelist["MonsterTitleConf"] = "MonsterTitleConf";
+		LoadAllInterface.interfacelist["ExpFbMonsterConfig"] = "ExpFbMonsterConfig";
+		LoadAllInterface.interfacelist["SDKConfig"] = "SDKConfig";
+		LoadAllInterface.interfacelist["WelfareConfig"] = "WelfareConfig";
+		LoadAllInterface.interfacelist["AwakenBaseConfig"] = "AwakenBaseConfig";
+		LoadAllInterface.interfacelist["ActivityType23Config"] = "ActivityType23Config";
+		LoadAllInterface.interfacelist["CrossArenaRankAward"] = "CrossArenaRankAward";
+		LoadAllInterface.interfacelist["NewWorldBossRankConfig"] = "NewWorldBossRankConfig";
+		LoadAllInterface.interfacelist["RechargeDaysAwardsConfig"] = "RechargeDaysAwardsConfig";
+		LoadAllInterface.interfacelist["LeadFubenBaseConfig"] = "LeadFubenBaseConfig";
+		LoadAllInterface.interfacelist["GuideConfig"] = "GuideConfig";
+		LoadAllInterface.interfacelist["ChatEmojiConfig"] = "ChatEmojiConfig";
+		LoadAllInterface.interfacelist["LevelMailConfig"] = "LevelMailConfig";
+		LoadAllInterface.interfacelist["LoginDayMailConfig"] = "LoginDayMailConfig";
+		LoadAllInterface.interfacelist["SkillsDescConfig"] = "SkillsDescConfig";
+		LoadAllInterface.interfacelist["RichManRoundAwardConfig"] = "RichManRoundAwardConfig";
+		LoadAllInterface.interfacelist["CashCowLimitConfig"] = "CashCowLimitConfig";
+		LoadAllInterface.interfacelist["NewWorldBossAttrConfig"] = "NewWorldBossAttrConfig";
+		LoadAllInterface.interfacelist["WorldRewardConfig"] = "WorldRewardConfig";
+		LoadAllInterface.interfacelist["SkillsConfig"] = "SkillsConfig";
+		LoadAllInterface.interfacelist["ExpFubenBaseConfig"] = "ExpFubenBaseConfig";
+		LoadAllInterface.interfacelist["GuildBonFireConfig"] = "GuildBonFireConfig";
+		LoadAllInterface.interfacelist["ItemDescConfig"] = "ItemDescConfig";
+		LoadAllInterface.interfacelist["ChongZhi1Config"] = "ChongZhi1Config";
+		LoadAllInterface.interfacelist["ChaptersConfig"] = "ChaptersConfig";
+		LoadAllInterface.interfacelist["LoopRechargeConfig"] = "LoopRechargeConfig";
+		LoadAllInterface.interfacelist["GodWeaponTaskConfig"] = "GodWeaponTaskConfig";
+		LoadAllInterface.interfacelist["qipaoConfig"] = "qipaoConfig";
+		LoadAllInterface.interfacelist["SuperVipConfig"] = "SuperVipConfig";
+		LoadAllInterface.interfacelist["AwakenAttrConfig"] = "AwakenAttrConfig";
+		LoadAllInterface.interfacelist["GWSkillReviseConfig"] = "GWSkillReviseConfig";
+		LoadAllInterface.interfacelist["ActivityBtnConfig"] = "ActivityBtnConfig";
+		LoadAllInterface.interfacelist["ItemComposeConfig"] = "ItemComposeConfig";
+		LoadAllInterface.interfacelist["CrossBossConfig"] = "CrossBossConfig";
+		LoadAllInterface.interfacelist["NewWorldBossBaseConfig"] = "NewWorldBossBaseConfig";
+		LoadAllInterface.interfacelist["GodWeaponFubenConfig"] = "GodWeaponFubenConfig";
+		LoadAllInterface.interfacelist["ActivityType24Config"] = "ActivityType24Config";
+		LoadAllInterface.interfacelist["VipGiftConfig"] = "VipGiftConfig";
+		LoadAllInterface.interfacelist["WujiBaseConfig"] = "WujiBaseConfig";
+		LoadAllInterface.interfacelist["ActivityType3Config"] = "ActivityType3Config";
+		LoadAllInterface.interfacelist["RichManBaseConfig"] = "RichManBaseConfig";
+		LoadAllInterface.interfacelist["MergeTotal"] = "MergeTotal";
+		LoadAllInterface.interfacelist["SuitAttrConfig"] = "SuitAttrConfig";
+		LoadAllInterface.interfacelist["TreasureOverViewConfig"] = "TreasureOverViewConfig";
+		LoadAllInterface.interfacelist["DevilBossConfig"] = "DevilBossConfig";
+		LoadAllInterface.interfacelist["CrossArenaMetalAward"] = "CrossArenaMetalAward";
+		LoadAllInterface.interfacelist["IChar"] = "IChar";
+		LoadAllInterface.interfacelist["IFilter"] = "IFilter";
+		LoadAllInterface.interfacelist["IHejiUse"] = "IHejiUse";
+		LoadAllInterface.interfacelist["FlySwordTypeConfig"] = "FlySwordTypeConfig";
+		LoadAllInterface.interfacelist["ICultivateTypeConfig"] = "ICultivateTypeConfig";
+		LoadAllInterface.interfacelist["FlySwordLevelUpConfig"] = "FlySwordLevelUpConfig";
+		LoadAllInterface.interfacelist["ICultivateStarLevelConfig"] = "ICultivateStarLevelConfig";
+		LoadAllInterface.interfacelist["FlySwordGrowthConfig"] = "FlySwordGrowthConfig";
+		LoadAllInterface.interfacelist["FlySwordCommonConfig"] = "FlySwordCommonConfig";
+		LoadAllInterface.interfacelist["ICultivateCommonConfig"] = "ICultivateCommonConfig";
+		LoadAllInterface.interfacelist["FlySwordQualificationConfig"] = "FlySwordQualificationConfig";
+		LoadAllInterface.interfacelist["ICultivateDanConfig"] = "ICultivateDanConfig";
+		LoadAllInterface.interfacelist["FlySwordTrainConfig"] = "FlySwordTrainConfig";
+		LoadAllInterface.interfacelist["ICultivateTypeConfig"] = "ICultivateTypeConfig";
+		LoadAllInterface.interfacelist["ICultivateBaseLevelConfig"] = "ICultivateBaseLevelConfig";
+		LoadAllInterface.interfacelist["ICultivateCommonConfig"] = "ICultivateCommonConfig";
+		LoadAllInterface.interfacelist["ICultivateBlessLevelConfig"] = "ICultivateBlessLevelConfig";
+		LoadAllInterface.interfacelist["ICultivateBaseLevelConfig"] = "ICultivateBaseLevelConfig";
+		LoadAllInterface.interfacelist["ICultivateDanConfig"] = "ICultivateDanConfig";
+		LoadAllInterface.interfacelist["ICultivateStarLevelConfig"] = "ICultivateStarLevelConfig";
+		LoadAllInterface.interfacelist["ICultivateBaseLevelConfig"] = "ICultivateBaseLevelConfig";
+
+	}
+}

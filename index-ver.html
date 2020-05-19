@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>H5游戏</title>
+    <!--防止index.html被浏览器缓存--begin-->
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <!--防止index.html被浏览器缓存--over-->
+
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html,
+        body {
+            -ms-touch-action: none;
+            background: #000000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body onunload="closeSocket()">
+    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+        data-entry-class="Main"
+        data-orientation="portrait"
+        data-scale-mode="fixedWidth"
+        data-frame-rate="30"
+        data-content-width="580"
+        data-content-height="936"
+        data-multi-fingered="2"
+        data-show-fps="false" data-show-log="false"
+        data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+    </div>
+<script>
+    function showLoadProgress() {
+
+    }
+
+    function showGame() {
+
+    }
+
+    function stop() {
+        return false;
+    }   
+
+    function sdkInit(appid) {
+    }
+
+    function showRecharge(payItems) {
+    }
+    function showQrCode(use) {
+    }
+
+    function connectError() {
+    }
+
+    function closeSocket() {
+        Main.closesocket();
+    }
+
+    function checkAWY() {
+
+    }
+    function reportSDK(str) {
+
+    }
+    function showQRCode() {
+
+    }
+    function isFocus() {
+
+    }
+    function isShare() {
+
+    }
+    function roleUp() {
+
+    }
+    function enterGame() {
+
+    }
+    function createRole() {
+
+    }
+    function getVipInfo() {
+
+    }
+    function isVerify () {
+    
+    }
+    function isShare() {
+		
+	}
+    
+    var urlParam = {};
+    var v = "";
+    var mainDir = "";
+    var url = "";
+    var origin = window.location.href;
+    var whIndex = origin.indexOf("?");
+    if (whIndex < 0) {
+        url += "?";
+    } else {
+        url += "&";
+    }
+    url += "enterMode=2";
+    window['paraUrl'] = origin + url;
+    paramInit(window['paraUrl']);
+    v = urlParam["v"];
+
+    loadScript("merged.js", function () {
+        var request = new egret.HttpRequest();
+        request.responseType = egret.HttpResponseType.TEXT;
+        request.once(egret.Event.COMPLETE, respHandler, this);
+        request.open(v + "/" + v + ".json", egret.HttpMethod.GET);
+        request.send();
+        function respHandler(evt)
+        {
+            verData=JSON.parse(evt.currentTarget.response);
+            if (isNaN(verData['main.min.js']))
+            {
+                mainDir = "0";
+            }
+            else
+            {
+                mainDir = (verData['main.min.js'] & 0xff);
+            }
+                
+            loadScript(mainDir + "/main.min.js", function () {
+                egret.runEgret({renderMode: "webgl"});
+                try {
+                }catch (e) {
+                }
+            });
+        }
+    });
+
+    function paramInit(str) {
+        var whIndex = str.indexOf("?");
+        if (whIndex != -1) {
+            var param = str.slice(whIndex + 1).split("&");
+            var strArr;
+            for (var i = 0; i < param.length; i++) {
+                strArr = param[i].split("=");
+                urlParam[strArr[0]] = strArr[1];
+            }
+        }
+    }
+
+    function loadScript(url, callback)
+    {
+        var script = document.createElement("script");
+        script.setAttribute('crossorigin', '');
+        script.onload = function () {
+            callback && callback();
+        };
+        script.onerror = function() {
+            script.parentNode.removeChild(script);
+            setTimeout(function() {
+                loadScript(url + (url.indexOf('?') == -1 ? '?' : '&') + Math.random(), callback);
+            }, 1000);
+        };
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+
+</script>
+</body>
+
+</html>

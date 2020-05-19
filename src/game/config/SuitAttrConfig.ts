@@ -1,0 +1,3 @@
+interface SuitAttrConfig {
+	level, attr
+}

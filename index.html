@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<title>H5游戏</title>
+	<!--防止index.html被浏览器缓存--begin-->
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache" CONTENT="no-cache">
+	<META HTTP-EQUIV="Expires" CONTENT="0">
+	<!--防止index.html被浏览器缓存--over-->
+
+	<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="full-screen" content="true" />
+	<meta name="screen-orientation" content="portrait" />
+	<meta name="x5-fullscreen" content="true" />
+	<meta name="360-fullscreen" content="true" />
+	<style>
+		html,
+		body {
+			-ms-touch-action: none;
+			background: #000000;
+			padding: 0;
+			border: 0;
+			margin: 0;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body onunload="closeSocket()">   
+<script>
+	function loadScript(list, callback) {
+
+		var loaded = 0;
+		for (var i = 0; i < list.length; i++) {
+			loadSingleScript(list[i]+"?v="+ Math.random(),function () {
+				loaded++;
+				scriptProgress(`正在加载中(${loaded}/${list.length})`);
+				if (loaded >= list.length) {
+					callback();
+				}
+			});
+		}
+        // var loaded = 0;
+        // var loadNext = function () {
+        //     loadSingleScript(list[loaded], function () {
+        //         loaded++;
+        //         scriptProgress(`正在加载中(${loaded}/${list.length})`);
+        //         if (loaded >= list.length) {
+        //             callback();
+        //         }
+        //         else {
+        //             loadNext();
+        //         }
+        //     })
+        // };
+        // loadNext();
+    };
+
+    function loadSingleScript(src, callback) {
+        var s = document.createElement('script');
+        s.async = false;
+        s.src = src;
+        s.addEventListener('load', function () {
+            s.parentNode.removeChild(s);
+            s.removeEventListener('load', arguments.callee, false);
+            callback();
+        }, false);
+        document.body.appendChild(s);
+    };
+
+	function showLoadingView(isShow) {
+		var myParent = document.getElementById("MainDiv");
+		if (isShow) {
+			var image = document.createElement("img");
+			image.src = 'http://cdn.haoyugames.club/clientTest/resource/image/loading/loading.jpg';
+			image.id = "loadingImage";
+			myParent.appendChild(image);
+			image.style.width = "100%";
+			image.style.height = "99.5%";
+			image.style.margin = "auto";
+			image.style.padding = "0";
+
+			var label = document.createElement("LABEL");
+			label.id = "loadingText";
+			myParent.appendChild(label);
+			// var text = document.createTextNode("正在加载中...");
+			label.setAttribute("for", "male");
+			label.style.position = "absolute";
+			label.style.left = document.body.clientWidth/2-50 + "px";
+			label.style.bottom = "50px";
+			label.style.color = "white";
+			label.innerHTML = "正在加载中(0.0)";
+		}
+		else {
+			var image = document.getElementById("loadingImage");
+			if (image) {
+				myParent.removeChild(image);
+			}
+			var label = document.getElementById("loadingText");
+			if (label) {
+				myParent.removeChild(label);
+			}
+		}
+		
+	}
+
+	
+
+	function startGame(param) {		
+		if (param) {
+			paramInit(param);
+			paraUrl = param;
+		}
+		
+		var pIframe = document.getElementById("paramIframe");
+		if (pIframe)
+			document.body.removeChild(pIframe);
+		
+		var sHtml = '' +
+			'<div id="MainDiv" style="margin: auto;width: 100%;height: 100%;" ' +
+			'class="egret-player" ' +
+			'data-entry-class="Main" ' +
+			'data-orientation="' + urlParam['orientation'] + '" ' +
+			'data-scale-mode="' + urlParam['scaleMode'] + '" ' +
+			//			'data-frame-rate="' + urlParam['frameRate'] + '" ' +
+			'data-frame-rate="60" ' +
+			'data-content-width="' + urlParam['egretWidth'] + '" ' +
+			'data-content-height="' + urlParam['egretHeight'] + '" ' +
+			'data-show-paint-rect="false" ' +
+			'data-multi-fingered="2" ' +
+			'data-show-fps="' + urlParam['fps'] + '" ' +
+			'data-show-log="true" ' +
+			'data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.3">' +
+			'</div>';
+		document.body.innerHTML += sHtml
+
+		showLoadingView(true);
+
+		var loadTime = 0;
+		loadTime = new Date().getTime();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', './manifest.json?v=' + Math.random(), true);
+		xhr.addEventListener("load", function () {
+			var manifest = JSON.parse(xhr.response);
+			var list = manifest.initial.concat(manifest.game);
+			loadScript(list, function () {
+				scriptProgress(`正在加载皮肤文件`);
+				loadSingleScript(urlParam.hosts+"resource/default.thm.js?v="+Math.random(),function () {
+					console.log("load end time:" + (new Date().getTime()-loadTime)/1000);
+					egret.runEgret({ renderMode: urlParam['renderMode'] });
+					egret.MainContext.instance.stage.dirtyRegionPolicy = urlParam['dirty'];
+				})
+			});
+		});
+		xhr.send(null);
+	}
+
+	function paramInit(str) {
+		var whIndex = str.indexOf("?");
+		if (whIndex != -1) {
+			var param = str.slice(whIndex + 1).split("&");
+			var strArr;
+			for (var i = 0; i < param.length; i++) {
+				strArr = param[i].split("=");
+				urlParam[strArr[0]] = strArr[1];
+			}
+		}
+	}
+
+	function scriptProgress(text) {
+		document.getElementById("loadingText").innerHTML = text;
+	}
+
+	function showLoadProgress() {
+
+	}
+
+	function showGame() {
+
+	}
+
+	function stop() {
+		return false;
+	}	
+
+	function sdkInit(appid) {
+	}
+
+	function showRecharge(payItems) {
+	}
+	function showQrCode(use) {
+	}
+
+	function connectError() {
+	}
+
+	function closeSocket() {
+		Main.closesocket();
+	}
+
+	function checkAWY() {
+
+	}
+	function reportSDK(str) {
+
+	}
+	function showQRCode() {
+
+	}
+	function isFocus() {
+		return 0;
+	}
+	function isShare(func) {
+
+	}
+	function hyShowShare(func) {
+
+	}
+	function roleUp() {
+
+	}
+	function enterGame() {
+
+	}
+	function createRole() {
+
+	}
+	function getVipInfo() {
+
+	}
+	function isVerify () {
+		return -1;
+	}
+	function isAuthenticate(callback) {
+		
+	}
+
+	document.oncontextmenu = stop;
+	window.addEventListener("message", function (event) {
+		if (event.data.id != "eE")
+			return;
+		
+		startGame(event.data.urlParam);
+	});
+
+	window.onorientationchange = function (e) {
+		var d = document.getElementById("screenHint");
+		if (window.orientation == 180 || window.orientation == 0) {
+			//竖屏状态
+			d.style.display = "none";
+		}
+		if (window.orientation == 90 || window.orientation == -90) {
+			//横屏状态
+			d.style.display = "block";
+		}
+	}
+
+    isDebug = true;
+	var paraUrl = location.href;
+	var urlParam = {};
+	paramInit(paraUrl);	
+
+	urlParam["orientation"] = 'portrait';
+	urlParam["scaleMode"] = 'fixedNarrow';
+	urlParam["egretWidth"] = "580";//document.body.clientWidth;
+	urlParam["egretHeight"] = "930";//document.body.clientHeight;
+	urlParam["fps"] = false;
+	urlParam["renderMode"] = 'webgl';
+	urlParam["zipLoad"] = false;
+	
+	// startGame("?enterMode=0&zipLoad=false");
+	if (!urlParam.user || !urlParam.srvid || !urlParam.srvaddr || !urlParam.srvport) {
+		var backIndex = paraUrl.split('/');
+		backIndex[backIndex.length - 1] = 'backIndex.html';
+		backIndex = backIndex.join('/');
+
+		document.body.innerHTML += '<iframe id="paramIframe" style="border: 0px; width: 100%;height: 100%;" ' +
+			'src="http://192.168.1.7:8080/h5game/game.html?backIndex=' + backIndex + '"></iframe>';
+	}
+	else {
+		startGame();
+	}
+</script>
+</body>
+
+</html>

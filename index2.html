@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<title>H5游戏</title>
+	<!--防止index.html被浏览器缓存--begin-->
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+	<META HTTP-EQUIV="Expires" CONTENT="0">
+	<!--防止index.html被浏览器缓存--over-->
+
+	<link href="favicon.ico" rel="shortcut icon" />
+	<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="full-screen" content="true" />
+	<meta name="screen-orientation" content="portrait" />
+	<meta name="x5-fullscreen" content="true" />
+	<meta name="360-fullscreen" content="true" />
+	<style>
+		html,
+		body {
+			-ms-touch-action: none;
+			background: #ffffff;
+			padding: 0;
+			border: 0;
+			margin: 0;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body onunload="closeSocket()">    
+<script>
+	function loadScript(list, callback) {
+        var loaded = 0;
+        var loadNext = function () {
+            loadSingleScript(list[loaded], function () {
+                loaded++;
+                if (loaded >= list.length) {
+                    callback();
+                }
+                else {
+                    loadNext();
+                }
+            })
+        };
+        loadNext();
+    };
+
+    function loadSingleScript(src, callback) {
+        var s = document.createElement('script');
+        s.async = false;
+        s.src = src;
+        s.addEventListener('load', function () {
+            s.parentNode.removeChild(s);
+            s.removeEventListener('load', arguments.callee, false);
+            callback();
+        }, false);
+        document.body.appendChild(s);
+    };
+
+	function startGame(param) {
+		if (param) {
+			paramInit(param);			
+		}
+
+		var sHtml = '' +
+			'<div style="margin: auto;width: 100%;height: 100%;" ' +
+			'class="egret-player" ' +
+			'data-entry-class="Main" ' +
+			'data-orientation="' + urlParam['orientation'] + '" ' +
+			'data-scale-mode="' + urlParam['scaleMode'] + '" ' +
+			//			'data-frame-rate="' + urlParam['frameRate'] + '" ' +
+			'data-frame-rate="60" ' +
+			'data-content-width="' + urlParam['egretWidth'] + '" ' +
+			'data-content-height="' + urlParam['egretHeight'] + '" ' +
+			'data-show-paint-rect="false" ' +
+			'data-multi-fingered="2" ' +
+			'data-show-fps="' + urlParam['fps'] + '" ' +
+			'data-show-log="true" ' +
+			'data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.3">' +
+			'</div>';
+		document.body.innerHTML += sHtml
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', './manifest.json?v=' + Math.random(), true);
+		xhr.addEventListener("load", function () {
+			var manifest = JSON.parse(xhr.response);
+			var list = manifest.initial.concat(manifest.game);
+			loadScript(list, function () {
+				window['paraUrl'] = param;
+				egret.runEgret({ renderMode: urlParam['renderMode'] });
+				egret.MainContext.instance.stage.dirtyRegionPolicy = urlParam['dirty'];
+			});
+		});
+		xhr.send(null);
+	}
+
+	function paramInit(str) {
+		var whIndex = str.indexOf("?");
+		if (whIndex != -1) {
+			var param = str.slice(whIndex + 1).split("&");
+			var strArr;
+			for (var i = 0; i < param.length; i++) {
+				strArr = param[i].split("=");
+				urlParam[strArr[0]] = strArr[1];
+			}
+		}
+	}
+
+	function showLoadProgress() {
+
+	}
+
+	function showGame() {
+
+	}
+
+	function stop() {
+		return false;
+	}	
+
+	function sdkInit(appid) {
+	}
+
+	function showRecharge(payItems) {
+	}
+	function showQrCode(use) {
+	}
+
+	function connectError() {
+	}
+
+	function closeSocket() {
+		Main.closesocket();
+	}
+
+	function checkAWY() {
+
+	}
+	function reportSDK(str) {
+
+	}
+	function showQRCode() {
+
+	}
+	function isFocus() {
+
+	}
+	function isShare() {
+
+	}
+	function roleUp() {
+
+	}
+	function enterGame() {
+
+	}
+	function createRole() {
+
+	}
+	function getVipInfo() {
+
+	}
+	function isVerify () {
+	
+	}
+	function isShare() {
+		
+	}
+
+	document.oncontextmenu = stop;
+	window.addEventListener("message", function (event) {
+		if (event.data.id != "eE")
+			return;
+		
+		startGame(event.data.urlParam);
+	});
+
+	window.onorientationchange = function (e) {
+		var d = document.getElementById("screenHint");
+		if (window.orientation == 180 || window.orientation == 0) {
+			//竖屏状态
+			d.style.display = "none";
+		}
+		if (window.orientation == 90 || window.orientation == -90) {
+			//横屏状态
+			d.style.display = "block";
+		}
+	}
+
+    isDebug = true;
+	var paraUrl = location.href;
+	var urlParam = {};
+	urlParam["orientation"] = 'portrait';
+	urlParam["scaleMode"] = 'fixedWidth';
+	urlParam["egretWidth"] = "580";//document.body.clientWidth;
+	urlParam["egretHeight"] = "930";//document.body.clientHeight;
+	urlParam["fps"] = false;
+	urlParam["renderMode"] = 'webgl';
+	urlParam["zipLoad"] = false;
+
+	var url = "";
+	var origin = window.location.href;
+	var whIndex = origin.indexOf("?");
+	if (whIndex < 0) {
+		url += "?";
+	} else {
+		url += "&";
+	}
+	url += "enterMode=1";
+
+	var data = {
+		"id": "eE",
+		"urlParam": origin + url
+	}
+	window.parent.postMessage(data, origin);
+</script>
+</body>
+
+</html>

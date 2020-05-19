@@ -1,0 +1,20 @@
+class ZhuanShengConfig {
+	/** 开始等级 */
+	public level: number;
+	/** 普通提升道具 */
+	public normalItem: number;
+	/** 普通提升道具经验 */
+	public normalExp: number;
+	/** 普通提升每日次数 */
+	public normalCount: number;
+	/** 高级提升道具 */
+	public advanceItem: number;
+	/** 高级提升道具经验 */
+	public advanceExp: number;
+	/** 高级提升每日次数 */
+	public advanceCount: number;
+	/** 经验转化率 */
+	public conversionRate: number;
+	/** 经验提升次数 */
+	public conversionCount: number;
+}

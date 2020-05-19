@@ -1,0 +1,4 @@
+
+interface DeskGiftConf {
+	awards: {}[];
+}

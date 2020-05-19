@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>游戏</title>
+		<!--防止index.html被浏览器缓存--begin-->
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+	<META HTTP-EQUIV="Expires" CONTENT="0">
+	<!--防止index.html被浏览器缓存--over-->
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="full-screen" content="true"/>
+	<meta name="screen-orientation" content="portrait"/>
+	<meta name="x5-fullscreen" content="true"/>
+	<meta name="360-fullscreen" content="true"/>
+	<style>
+		html,
+		body {
+			-ms-touch-action: none;
+			background: #888888;
+			padding: 0;
+			border: 0;
+			margin: 0;
+			height: 100%;
+		}
+	</style>
+
+	<script src="merged.js"></script>
+	<script src="main.min.js"></script>
+	<!-- <script src="src/AssetAdapter.js"></script> -->
+	<!-- <script src="src/LoadingUI.js"></script> -->
+	<!-- <script src="src/Main.js"></script> -->
+	<!-- <script src="src/ThemeAdapter.js"></script> -->
+</head>
+
+<body>
+<div style="margin: auto;width: 100%;height: 100%;" class="egret-player" data-entry-class="Main" data-orientation="auto"
+	 data-scale-mode="noScale" data-frame-rate="30" data-content-width="480" data-content-height="800"
+	 data-show-paint-rect="false"
+	 data-multi-fingered="2" data-show-fps="false" data-show-log="false"
+	 data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+</div>
+<script>
+
+	var serverList = [
+		"主干|1|192.168.1.7:8010",
+		"微信焚天1服|6001|192.168.1.7:10021",
+		"hefu|2|192.168.1.7:8031",
+		"1.0.0|996|192.168.1.7:10013",
+		"主干-跨服11|11|192.168.1.7:8011",
+		"主干-跨服12|12|192.168.1.7:8015",
+		"内网审核分支|999|192.168.1.7:10001",
+		"内网审核分支2|998|192.168.1.7:10005",
+		"版署审核|997|192.168.1.7:10009",
+		"炼神|995|192.168.1.7:10017",
+		"龙杰|41|192.168.1.41:8010",
+		"日朋|21|192.168.1.21:8010",
+		"英男1|23|192.168.1.23:8010",
+		"英男2|230|192.168.1.23:8010",
+		"志勇|160|192.168.1.24:8010",
+		"东成1|46|192.168.1.22:8010",
+		"东成2|846|192.168.1.22:8012",
+		"东成3|946|192.168.1.22:8011",
+		"震宇|25|192.168.1.25:8010",
+	];
+
+	var resList = [
+		"主干|http://192.168.1.7:8080/",
+		"hefu|http://192.168.1.7:8087/",
+		"1.3.0|http://192.168.1.7:8089/",
+		"审核|http://192.168.1.7:8083/",
+		"审核2|http://192.168.1.7:8084/",
+		"版署审核|http://192.168.1.7:8088/",
+		"炼神|http://192.168.1.7:8090/",
+		"solace|http://192.168.1.44/zhanhj/common/trunk/config/client/resource/",
+		"ade|http://192.168.0.16:80/",
+		"小璘|http://192.168.1.46:81/common/trunk/config/client/resource/",
+		"小璘法阵|http://192.168.1.46:81/fazhenZiYuan/config/client/resource/",
+		"浪|http://192.168.1.47:80/game/common/trunk/config/client/resource/",
+		"浪魔界|http://192.168.1.47:80/game/common/branch/mojie/config/client/resource/",
+		"winter|http://192.168.1.40:8080/",
+		"日朋|http://192.168.1.21:8080/",
+		"龙杰|http://192.168.1.41:8080/",
+		"英男|http://192.168.1.23:8080/",
+		"东成|http://192.168.1.22:8080/",
+		"志勇|http://192.168.1.24:8080/",
+		"震宇|http://192.168.1.25:8080/",
+	];
+
+	var clientList = [
+		"主干|http://192.168.1.7:8080/main.min.js",
+		"hefu|http://192.168.1.7:8087/main.min.js",
+		"1.3.0|http://192.168.1.7:8089/main.min.js",
+		"审核|http://192.168.1.7:8083/main.min.js",
+		"审核2|http://192.168.1.7:8084/main.min.js",
+		"版署审核|http://192.168.1.7:8088/main.min.js",
+		"炼神|http://192.168.1.7:8090/main.min.js"
+	];
+	var noList = false;
+	// var egretWidth = 640;
+	// var egretHeight = 1030;
+	var egretWidth = 580;
+	var egretHeight = 936;
+
+
+	/**
+	 * {
+	 * "renderMode":, //引擎渲染模式，"canvas" 或者 "webgl"
+	 * "audioType": "" //使用的音频类型，0:默认，1:qq audio，2:web audio，3:audio
+	 * "antialias": //WebGL模式下是否开启抗锯齿，true:开启，false:关闭，默认为false
+	 * }
+	 **/
+	egret.runEgret({renderMode: "webgl", audioType: 0});
+</script>
+</body>
+
+</html>

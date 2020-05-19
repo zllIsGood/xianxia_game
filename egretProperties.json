@@ -1,0 +1,39 @@
+{
+	"engineVersion": "5.2.33",
+	"compilerVersion": "5.2.33",
+	"template": {},
+	"target": {
+		"current": "web"
+	},
+	"modules": [
+		{
+			"name": "egret"
+		},
+		{
+			"name": "eui"
+		},
+		{
+			"name": "assetsmanager"
+		},
+		{
+			"name": "tween"
+		},
+		{
+			"name": "promise"
+		},
+		{
+			"name": "game"
+		},
+		{
+			"name": "socket"
+		},
+		{
+			"name": "jszip",
+			"path": "3rdlib/jszip"
+		},
+		{
+			"name": "particle",
+			"path": "3rdlib/particle"
+		}
+	]
+}

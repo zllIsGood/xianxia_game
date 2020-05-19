@@ -1,0 +1,3 @@
+class MijiBaseConfig {
+	lockId: number;
+}

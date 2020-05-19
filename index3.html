@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>H5游戏</title>
+    <!--防止index.html被浏览器缓存--begin-->
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <!--防止index.html被浏览器缓存--over-->
+
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html,
+        body {
+            -ms-touch-action: none;
+            background: #000000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+    <script egret="libs" src="jszip.min.js"></script>
+</head>
+
+<body onunload="closeSocket()">
+    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+        data-entry-class="Main"
+        data-orientation="portrait"
+        data-scale-mode="fixedWidth"
+        data-frame-rate="30"
+        data-content-width="580"
+        data-content-height="936"
+        data-multi-fingered="2"
+        data-show-fps="false" data-show-log="false"
+        data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+    </div>
+<script>
+    function showLoadProgress() {
+
+    }
+
+    function showGame() {
+
+    }
+
+    function stop() {
+        return false;
+    }   
+
+    function sdkInit(appid) {
+    }
+
+    function showRecharge(payItems) {
+    }
+    function showQrCode(use) {
+    }
+
+    function connectError() {
+    }
+
+    function closeSocket() {
+        Main.closesocket();
+    }
+
+    function checkAWY() {
+
+    }
+    function reportSDK(str) {
+
+    }
+    function showQRCode() {
+
+    }
+    function isFocus() {
+
+    }
+    function isShare() {
+
+    }
+    function roleUp() {
+
+    }
+    function enterGame() {
+
+    }
+    function createRole() {
+
+    }
+    function getVipInfo() {
+
+    }
+    function isVerify () {
+    
+    }
+    function isShare() {
+        
+    }
+    
+    var urlParam = {};
+    var v = "";
+    var mainDir = "";
+    var url = "";
+    var origin = window.location.href;
+    var whIndex = origin.indexOf("?");
+    if (whIndex < 0) {
+        url += "?";
+    } else {
+        url += "&";
+    }
+    url += "enterMode=2";
+    window['paraUrl'] = origin + url;
+    paramInit(window['paraUrl']);
+    v = urlParam["v"];
+
+    loadZip("merged.js.cfg",function(zip)
+    {
+        createScript(zip,"merged.js",function () {
+            if (v === undefined) {
+                loadZip("/main.min.js.cfg",function(zip) {
+                    createScript(zip,"main.min.js",function () {
+                        egret.runEgret({renderMode: "webgl"});
+                        try {
+                        }catch (e) {
+                        }
+                    });
+                });
+            } else {
+                loadZip(v + "/" + v + ".json.cfg",function(zip) {
+                    zip.file(v+".json").async("string").then(function (text) {
+                        verData=JSON.parse(text);
+                        if (isNaN(verData['main.min.js.cfg'])){
+                            mainDir = "0";
+                        }
+                        else{
+                            mainDir = (verData['main.min.js.cfg'] & 0xff);
+                        }
+                        loadZip(mainDir + "/main.min.js.cfg",function(zip)
+                        {
+                            createScript(zip,"main.min.js",function () {
+                                egret.runEgret({renderMode: "webgl"});
+                                try {
+                                }catch (e) {
+                                }
+                            });
+                        });
+                    });
+                });
+            }
+        });
+    });
+
+    function paramInit(str) {
+        var whIndex = str.indexOf("?");
+        if (whIndex != -1) {
+            var param = str.slice(whIndex + 1).split("&");
+            var strArr;
+            for (var i = 0; i < param.length; i++) {
+                strArr = param[i].split("=");
+                urlParam[strArr[0]] = strArr[1];
+            }
+        }
+    }
+
+    // 加载jszip的方式 ======================================================================
+    function loadZip(url,callBack)
+    {
+        var xhrZip = new XMLHttpRequest();
+        xhrZip.open("GET", url, true);
+        xhrZip.responseType = "arraybuffer";
+        xhrZip.addEventListener("load", function (oEvent)
+        {
+            var arrayBuffer = xhrZip.response; // 注意:不是responseText
+            if (!arrayBuffer)
+            {
+                console.log(url + "解析异常:" + xhrZip);
+                throw new Error("加载异常");
+            }
+            JSZip.loadAsync(arrayBuffer).then(function (zip) {
+                callBack(zip);
+            });
+        });
+        xhrZip.send(null);
+    }
+    function createScript(zip,fileName,callBack)
+    {
+        //解压出来变成script脚本
+        zip.file(fileName).async("string").then(function (text) {
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.text = text;
+            document.body.appendChild(script);
+            document.body.removeChild(script);
+            if (callBack) callBack();
+        })
+    }
+    //==========================================================================================
+
+</script>
+</body>
+
+</html>
