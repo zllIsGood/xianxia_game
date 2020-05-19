@@ -3,6 +3,7 @@
 .vscode/
 
 # libs/
+resource/
 
 bin-debug/
 
