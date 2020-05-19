@@ -1,0 +1,15 @@
+
+.idea/
+.vscode/
+
+libs/
+
+bin-debug/
+
+.wing/
+
+bin-release/
+
+.DS_Store
+
+# manifest.json
